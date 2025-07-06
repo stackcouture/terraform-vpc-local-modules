@@ -1,0 +1,73 @@
+variable "vpc_cidr" {
+  type        = string
+  description = "VPC CIDR Block"
+}
+
+variable "instance_tenancy" {
+  type        = string
+  description = "VPC Instance Tenancy"
+}
+
+variable "vpc_name" {
+  type        = string
+  description = "VPC Name"
+}
+
+variable "enable_dns_support" {
+  type        = bool
+  description = "Enable DNS Support"
+}
+
+variable "enable_dns_hostnames" {
+  type        = bool
+  description = "Enable DNS Hostnam"
+}
+
+
+# Subnets Variables 
+
+variable "public_subnet_names" {
+  type        = list(string)
+  description = "Public Subnet Names"
+}
+
+variable "public_subnet_cidrs" {
+  type        = list(string)
+  description = "Public Subnet CIDR Blocks"
+}
+
+variable "private_subnet_names" {
+  type        = list(string)
+  description = "Private Subnet AZ Names"
+}
+
+variable "private_subnet_cidrs" {
+  type        = list(string)
+  description = "Public Subnet CIDR Blocks"
+}
+
+variable "subnet_az_names" {
+  type        = list(string)
+  description = "Subnet AZ Names"
+}
+
+#Internet Gateway 
+
+variable "igw_name" {
+  type        = string
+  description = "Internet Gateway Name"
+}
+
+# Route Table
+
+variable "rt_name" {
+  type        = string
+  description = "Route Table Name"
+}
+
+# Security Group 
+
+variable "sg_name" {
+  type = string 
+  description = "Security group name"
+}
