@@ -1,3 +1,5 @@
+repo_full_name = "stackcouture/terraform-vpc-local-modules"
+
 vpc_cidr             = "10.0.0.0/16"
 instance_tenancy     = "default"
 vpc_name             = "My-VPC"

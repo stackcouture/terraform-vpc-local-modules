@@ -1,3 +1,8 @@
+variable "repo_full_name" {
+  type = string 
+  description = "Repo Full name"
+}
+
 variable "vpc_cidr" {
   type        = string
   description = "VPC CIDR Block"
