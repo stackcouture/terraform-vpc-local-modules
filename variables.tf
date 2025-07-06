@@ -1,5 +1,5 @@
 variable "repo_full_name" {
-  type = string 
+  type        = string
   description = "Repo Full name"
 }
 
@@ -48,7 +48,7 @@ variable "private_subnet_names" {
 
 variable "private_subnet_cidrs" {
   type        = list(string)
-  description = "Public Subnet CIDR Blocks"
+  description = "Private Subnet CIDR Blocks"
 }
 
 variable "subnet_az_names" {
@@ -65,14 +65,19 @@ variable "igw_name" {
 
 # Route Table
 
-variable "rt_name" {
+variable "public_rt_name" {
   type        = string
   description = "Route Table Name"
+}
+
+variable "private_rt_name" {
+  type        = string
+  description = "Private Route Table Name"
 }
 
 # Security Group 
 
 variable "sg_name" {
-  type = string 
+  type        = string
   description = "Security group name"
 }

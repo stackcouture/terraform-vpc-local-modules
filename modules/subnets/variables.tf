@@ -26,7 +26,7 @@ variable "private_subnet_names" {
 
 variable "private_subnet_cidrs" {
   type        = list(string)
-  description = "Public Subnet CIDR Blocks"
+  description = "Private Subnet CIDR Blocks"
 }
 
 # variable "public_subnet_names" {
@@ -39,6 +39,9 @@ variable "subnet_az_names" {
   description = "Subnet AZ Names"
 }
 
+# variable "public_subnet_ids" {
+#   type = map(string)
+# }
 # variable "subnet_cidrs" {
 #   type        = list(string)
 #   description = "Subnet CIDR Blocks"

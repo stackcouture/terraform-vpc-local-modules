@@ -8,14 +8,13 @@ module "vpc" {
 }
 
 module "subnet" {
-  source          = "./modules/subnets"
-  vpc_id          = module.vpc.vpc_id
-  public_subnet_names    = var.public_subnet_names
-  public_subnet_cidrs    = var.public_subnet_cidrs
-  private_subnet_names    = var.private_subnet_names
-  private_subnet_cidrs    = var.private_subnet_cidrs
-
-  subnet_az_names = var.subnet_az_names
+  source               = "./modules/subnets"
+  vpc_id               = module.vpc.vpc_id
+  public_subnet_names  = var.public_subnet_names
+  public_subnet_cidrs  = var.public_subnet_cidrs
+  private_subnet_names = var.private_subnet_names
+  private_subnet_cidrs = var.private_subnet_cidrs
+  subnet_az_names      = var.subnet_az_names
 }
 
 module "igw" {
@@ -27,14 +26,17 @@ module "igw" {
 module "rt" {
   source              = "./modules/rt"
   vpc_id              = module.vpc.vpc_id
-  subnet_ids          = module.subnet.subnet_ids
+  public_subnet_ids   = module.subnet.public_subnet_ids
+  private_subnet_ids  = module.subnet.private_subnet_ids
   internet_gateway_id = module.igw.igw_id
-  rt_name             = var.rt_name
+  public_rt_name      = var.public_rt_name
+  private_rt_name     = var.private_rt_name
+
 }
 
 module "sg" {
-  source = "./modules/sg"
-  vpc_id              = module.vpc.vpc_id
-  vpc_cidr_block =      module.vpc.vpc_cidr_block
-  sg_name = var.sg_name
+  source         = "./modules/sg"
+  vpc_id         = module.vpc.vpc_id
+  vpc_cidr_block = module.vpc.vpc_cidr_block
+  sg_name        = var.sg_name
 }

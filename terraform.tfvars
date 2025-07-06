@@ -8,11 +8,11 @@ enable_dns_hostnames = true
 
 
 # Subnets 
-public_subnet_names    = ["Public-Subnet-1", "Public-Subnet-2"]
-public_subnet_cidrs    = ["10.0.0.0/26", "10.0.0.64/26"]
+public_subnet_names = ["Public-Subnet-1", "Public-Subnet-2"]
+public_subnet_cidrs = ["10.0.0.0/26", "10.0.0.64/26"]
 
-private_subnet_names    = ["Private-Subnet-1", "Private-Subnet-2"]
-private_subnet_cidrs    = ["10.0.0.128/26", "10.0.0.192/26"]
+private_subnet_names = ["Private-Subnet-1", "Private-Subnet-2"]
+private_subnet_cidrs = ["10.0.0.128/26", "10.0.0.192/26"]
 
 subnet_az_names = ["ap-south-1a", "ap-south-1b"]
 
@@ -20,7 +20,8 @@ subnet_az_names = ["ap-south-1a", "ap-south-1b"]
 igw_name = "VPC-IGW"
 
 #Route Table 
-rt_name = "Public-RT"
+public_rt_name  = "Public-RT"
+private_rt_name = "Private-RT"
 
 #Security Group 
 sg_name = "Web-SG"
