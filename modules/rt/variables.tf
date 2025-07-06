@@ -23,6 +23,11 @@ variable "internet_gateway_id" {
   description = "Internet Gateway Id"
 }
 
+variable "nat_gateway_id" {
+  type        = string
+  description = "NAT Gateway ID"
+}
+
 variable "public_subnet_ids" {
   description = "List of subnet IDs to associate with the route table"
   type        = map(string)

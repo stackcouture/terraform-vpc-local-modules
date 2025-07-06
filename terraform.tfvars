@@ -17,7 +17,8 @@ private_subnet_cidrs = ["10.0.0.128/26", "10.0.0.192/26"]
 subnet_az_names = ["ap-south-1a", "ap-south-1b"]
 
 #Internet Gateway 
-igw_name = "VPC-IGW"
+igw_name    = "VPC-IGW"
+nat_gw_name = "VPC-NGW"
 
 #Route Table 
 public_rt_name  = "Public-RT"

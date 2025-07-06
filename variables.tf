@@ -63,6 +63,14 @@ variable "igw_name" {
   description = "Internet Gateway Name"
 }
 
+# NAT Gateway 
+
+variable "nat_gw_name" {
+  type        = string
+  description = "NAT Gateway Name"
+}
+
+
 # Route Table
 
 variable "public_rt_name" {
