@@ -3,3 +3,4 @@
 terraform.tfstate*
 .terraform 
 stackcouture-key.pem
+modules/ec2/my-ec2key.pem
