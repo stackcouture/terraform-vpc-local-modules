@@ -29,7 +29,7 @@ module "rt" {
   public_subnet_ids   = module.subnet.public_subnet_ids
   private_subnet_ids  = module.subnet.private_subnet_ids
   internet_gateway_id = module.igw.igw_id
-  nat_gateway_id      = module.nat.nat_gateway_id
+  #nat_gateway_id      = module.nat.nat_gateway_id
   public_rt_name      = var.public_rt_name
   private_rt_name     = var.private_rt_name
 }
@@ -41,10 +41,10 @@ module "sg" {
   sg_name        = var.sg_name
 }
 
-module "nat" {
-  source            = "./modules/nat"
-  vpc_id            = module.vpc.vpc_id
-  nat_gw_name       = var.nat_gw_name
-  iwg_id            = module.igw.igw_id
-  public_subnet_ids = module.subnet.public_subnet_ids
-}
+# module "nat" {
+#   source            = "./modules/nat"
+#   vpc_id            = module.vpc.vpc_id
+#   nat_gw_name       = var.nat_gw_name
+#   iwg_id            = module.igw.igw_id
+#   public_subnet_ids = module.subnet.public_subnet_ids
+# }
