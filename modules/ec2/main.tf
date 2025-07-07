@@ -50,7 +50,7 @@ resource "null_resource" "install_apache2" {
     connection {
       type        = "ssh"
       user        = "ubuntu"                                              # Default EC2 user for Amazon Linux 2
-      private_key = file("${path.module}/stackcouture-key.pem") # Path to your private key
+      private_key = file("${path.root}/stackcouture-key.pem") # Path to your private key
       host        = aws_instance.public_instance.public_ip                            # EC2 Public IP
     }
   }
