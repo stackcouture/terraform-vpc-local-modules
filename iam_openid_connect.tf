@@ -82,6 +82,16 @@ resource "aws_iam_policy" "github_oidc_policy" {
           "ec2:DescribeSecurityGroupRules"
         ],
         Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "iam:ListPolicyVersions"  # Allow listing versions for specific policies
+        ]
+        Resource = [
+          "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/GitHubS3AccessPolicy-${data.aws_caller_identity.current.account_id}",
+          "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/AllowEC2Actions"
+        ]
       }
     ]
   })
