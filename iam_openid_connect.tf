@@ -105,12 +105,34 @@ resource "aws_iam_policy" "allow_ec2_actions" {
           "ec2:AssociateAddress",
           "ec2:DescribeInstanceAttribute",
           "ec2:ModifyInstanceAttribute",
-          "ec2:DescribeInstanceCreditSpecifications"
+          "ec2:DescribeInstanceCreditSpecifications",
+          "ec2:ImportKeyPair"
         ]
         Resource = "*"
       }
     ]
   })
+}
+
+resource "aws_iam_policy" "import_key_pair_policy" {
+  name        = "ImportKeyPairPolicy-${data.aws_caller_identity.current.account_id}"
+  description = "Allow ImportKeyPair operation on EC2"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = "ec2:ImportKeyPair"
+        Resource = "arn:aws:ec2:ap-south-1:${data.aws_caller_identity.current.account_id}:key-pair/my-ec2key"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "attach_import_key_pair_policy" {
+  policy_arn = aws_iam_policy.import_key_pair_policy.arn
+  role       = aws_iam_role.github_oidc_role.name
 }
 
 resource "aws_iam_role_policy_attachment" "github_attach_policy" {
