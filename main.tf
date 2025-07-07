@@ -54,6 +54,8 @@ module "ec2" {
   instance_type     = var.instance_type
   instance_tag      = var.instance_tag
   public_subnet_ids = module.subnet.public_subnet_ids
+  private_subnet_ids  = module.subnet.private_subnet_ids
   sg_id             = module.sg.sg_id
   az_name           = var.subnet_az_names[0]
+  private_instance_tag = var.private_instance_tag
 }

@@ -21,3 +21,12 @@ variable "az_name" {
   type        = string
   description = "Az name"
 }
+
+variable "private_instance_tag" {
+  type = string 
+  description = "Private Instance Tag"
+}
+
+variable "private_subnet_ids" {
+  type = map(string)
+}

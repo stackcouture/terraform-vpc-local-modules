@@ -1,4 +1,4 @@
-name: Deploy Website via OIDC
+name: Cloud Networking and Compute Setup
 
 on:
   push:
@@ -13,9 +13,8 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
+  cloud-setup:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3    
@@ -52,12 +51,6 @@ jobs:
 
       - name: Terraform Init
         run: terraform init --reconfigure -input=false
-
-    #   - name: Terraform validate
-    #     run: terraform validate
-
-    #   - name: Terraform Plan
-    #     run: terraform plan -out=tfplan
 
       - name: Terraform Plan & Apply
         run: terraform apply -auto-approve -parallelism=10

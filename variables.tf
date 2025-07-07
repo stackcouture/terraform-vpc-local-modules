@@ -101,3 +101,8 @@ variable "instance_tag" {
   type        = string
   description = "Instance Tag"
 }
+
+variable "private_instance_tag" {
+  type = string 
+  description = "Private Instance Tag"
+}
