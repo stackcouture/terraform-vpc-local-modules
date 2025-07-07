@@ -72,18 +72,30 @@ resource "aws_iam_policy" "github_oidc_policy" {
           "ec2:DescribeSecurityGroupRules"
         ],
         Resource = "*"
-      },
+      }
+    ]
+  })
+}
+
+resource "aws_iam_policy" "allow_ec2_actions" {
+  name        = "AllowEC2Actions"
+  description = "Allow necessary EC2 actions for Terraform operations"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
       {
         Effect = "Allow"
         Action = [
-          "ec2:RunInstances",
           "ec2:DescribeInstances",
           "ec2:DescribeImages",
+          "ec2:DescribeInstanceTypes",
           "ec2:DescribeSecurityGroups",
           "ec2:DescribeSubnets",
           "ec2:DescribeVolumes",
           "ec2:DescribeNetworkInterfaces",
           "ec2:CreateTags",
+          "ec2:RunInstances",
           "ec2:AllocateAddress",
           "ec2:AssociateAddress"
         ]
@@ -96,4 +108,10 @@ resource "aws_iam_policy" "github_oidc_policy" {
 resource "aws_iam_role_policy_attachment" "github_attach_policy" {
   role       = aws_iam_role.github_oidc_role.name
   policy_arn = aws_iam_policy.github_oidc_policy.arn
+}
+
+
+resource "aws_iam_role_policy_attachment" "attach_ec2_policy" {
+  policy_arn = aws_iam_policy.allow_ec2_actions.arn
+  role       = aws_iam_role.github_oidc_role.name
 }
