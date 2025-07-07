@@ -54,7 +54,8 @@ resource "aws_iam_policy" "github_oidc_policy" {
           "iam:GetRole",
           "iam:ListRolePolicies",
           "iam:GetPolicy",
-          "iam:GetPolicyVersion"
+          "iam:GetPolicyVersion",
+          "iam:ListAttachedRolePolicies"
         ],
         Resource = "*"
       },
@@ -63,7 +64,11 @@ resource "aws_iam_policy" "github_oidc_policy" {
         Action = [
           "ec2:DescribeImages",
           "ec2:DescribeVpcs",
-          "ec2:DescribeVpcAttribute"
+          "ec2:DescribeVpcAttribute",
+          "ec2:DescribeInternetGateways",
+          "ec2:DescribeRouteTables",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets"
         ],
         Resource = "*"
       }
