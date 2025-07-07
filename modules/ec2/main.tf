@@ -68,7 +68,8 @@ resource "null_resource" "install_httpd" {
     connection {
       type        = "ssh"
       user        = "ubuntu"                               # Default EC2 user for Amazon Linux 2
-      private_key = file("${path.root}/my-ec2key.pem")          # Path to your private key
+      #private_key = file("${path.root}/my-ec2key.pem")          # Path to your private key
+      private_key = tls_private_key.my_ec2key.private_key_pem
       host        = aws_instance.public_instance.public_ip # EC2 Public IP
     }
   }
