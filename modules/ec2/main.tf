@@ -1,5 +1,18 @@
+data "aws_ami" "ubuntu" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  owners = ["099720109477"]
+}
+
 resource "aws_instance" "ec2_b" {
-  ami                         = data.ubuntu.id
+  ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.instance_type
   subnet_id                   = values(var.public_subnet_ids)[0]
   key_name                    = "stackcouture-key"
