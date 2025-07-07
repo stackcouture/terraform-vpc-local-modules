@@ -47,6 +47,22 @@ resource "aws_iam_policy" "github_oidc_policy" {
         Effect   = "Allow",
         Action   = ["iam:GetOpenIDConnectProvider"],
         Resource = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/token.actions.githubusercontent.com"]
+      },
+      {
+        Effect = "Allow",
+        Action = [
+          "iam:GetRole",
+          "iam:GetPolicy"
+        ],
+        Resource = "*"
+      },
+      {
+        Effect = "Allow",
+        Action = [
+          "ec2:DescribeImages",
+          "ec2:DescribeVpcs"
+        ],
+        Resource = "*"
       }
     ]
   })
