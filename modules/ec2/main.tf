@@ -11,7 +11,7 @@ resource "aws_key_pair" "my_ec2key" {
 
 # Save the private key to a local file in .pem format
 resource "local_file" "private_key" {
-  filename        = "${path.module}/my-ec2key.pem"
+  filename        = "${path.root}/my-ec2key.pem"
   content         = tls_private_key.my_ec2key.private_key_pem
   file_permission = "0400" # Read-only by the owner
 }
