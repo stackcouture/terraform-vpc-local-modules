@@ -38,13 +38,10 @@ jobs:
       - name: Cache Terraform provider plugins
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.terraform.d/plugin-cache
-            .terraform
-          key: terraform-${{ runner.os }}-${{ hashFiles('**/*.tf', '**/.terraform.lock.hcl') }}
+          path: ~/.terraform.d/plugin-cache
+          key: terraform-${{ runner.os }}-${{ hashFiles('**/*.tf') }}
           restore-keys: |
             terraform-${{ runner.os }}-
-            terraform-
 
       - name: Terraform Init
         run: terraform init --reconfigure -input=false

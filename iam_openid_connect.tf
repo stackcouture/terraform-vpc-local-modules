@@ -68,7 +68,8 @@ resource "aws_iam_policy" "github_oidc_policy" {
           "ec2:DescribeInternetGateways",
           "ec2:DescribeRouteTables",
           "ec2:DescribeSecurityGroups",
-          "ec2:DescribeSubnets"
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroupRules"
         ],
         Resource = "*"
       }
