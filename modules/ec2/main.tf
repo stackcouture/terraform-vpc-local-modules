@@ -58,9 +58,7 @@ resource "null_resource" "install_httpd" {
   depends_on = [aws_instance.public_instance] # Ensures EC2 instance is created before running provisioner
 
   provisioner "remote-exec" {
-    inline = [
-      "sudo apt update -y",                                                              # Update package list
-      "sudo apt install -y apache2",                                                     # Install Apache2
+    inline = [                                                  # Install Apache2
       "echo '<h1>Hello from Terraform Server</h1>' | sudo tee /var/www/html/index.html", # Add content to index.html
       "sudo systemctl start apache2",                                                    # Start Apache
       "sudo systemctl enable apache2",                                                   # Enable Apache to start on boot
