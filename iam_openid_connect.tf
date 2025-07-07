@@ -52,7 +52,9 @@ resource "aws_iam_policy" "github_oidc_policy" {
         Effect = "Allow",
         Action = [
           "iam:GetRole",
-          "iam:GetPolicy"
+          "iam:ListRolePolicies",
+          "iam:GetPolicy",
+          "iam:GetPolicyVersion"
         ],
         Resource = "*"
       },
@@ -60,7 +62,8 @@ resource "aws_iam_policy" "github_oidc_policy" {
         Effect = "Allow",
         Action = [
           "ec2:DescribeImages",
-          "ec2:DescribeVpcs"
+          "ec2:DescribeVpcs",
+          "ec2:DescribeVpcAttribute"
         ],
         Resource = "*"
       }
