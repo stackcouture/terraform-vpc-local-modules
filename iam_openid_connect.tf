@@ -94,11 +94,12 @@ resource "aws_iam_policy" "allow_ec2_actions" {
           "ec2:DescribeSubnets",
           "ec2:DescribeVolumes",
           "ec2:DescribeNetworkInterfaces",
+          "ec2:DescribeTags",
           "ec2:CreateTags",
           "ec2:RunInstances",
           "ec2:AllocateAddress",
           "ec2:AssociateAddress",
-          "ec2:DescribeTags"
+          "ec2:DescribeInstanceAttribute"
         ]
         Resource = "*"
       }
