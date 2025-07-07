@@ -97,7 +97,8 @@ resource "aws_iam_policy" "allow_ec2_actions" {
           "ec2:CreateTags",
           "ec2:RunInstances",
           "ec2:AllocateAddress",
-          "ec2:AssociateAddress"
+          "ec2:AssociateAddress",
+          "ec2:DescribeTags"
         ]
         Resource = "*"
       }
