@@ -30,10 +30,10 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "public_instance" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-  subnet_id     = values(var.public_subnet_ids)[0]
-  key_name      = "stackcouture-key"
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = var.instance_type
+  subnet_id                   = values(var.public_subnet_ids)[0]
+  key_name                    = "stackcouture-key"
   vpc_security_group_ids      = [var.sg_id]
   availability_zone           = var.az_name
   associate_public_ip_address = true
@@ -49,6 +49,28 @@ resource "aws_instance" "public_instance" {
   }
   tags = {
     Name = var.instance_tag
+  }
+}
+
+# Null resource to install httpd and add content
+resource "null_resource" "install_httpd" {
+  depends_on = [aws_instance.public_instance] # Ensures EC2 instance is created before running provisioner
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt update -y",                                                              # Update package list
+      "sudo apt install -y apache2",                                                     # Install Apache2
+      "echo '<h1>Hello from Terraform Server</h1>' | sudo tee /var/www/html/index.html", # Add content to index.html
+      "sudo systemctl start apache2",                                                    # Start Apache
+      "sudo systemctl enable apache2",                                                   # Enable Apache to start on boot
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"                               # Default EC2 user for Amazon Linux 2
+      private_key = "${path.root}/my-ec2key.pem"           # Path to your private key
+      host        = aws_instance.public_instance.public_ip # EC2 Public IP
+    }
   }
 }
 

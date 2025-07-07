@@ -30,8 +30,8 @@ module "rt" {
   private_subnet_ids  = module.subnet.private_subnet_ids
   internet_gateway_id = module.igw.igw_id
   nat_gateway_id      = module.nat.nat_gateway_id
-  public_rt_name  = var.public_rt_name
-  private_rt_name = var.private_rt_name
+  public_rt_name      = var.public_rt_name
+  private_rt_name     = var.private_rt_name
 }
 
 module "sg" {
@@ -54,6 +54,6 @@ module "ec2" {
   instance_type     = var.instance_type
   instance_tag      = var.instance_tag
   public_subnet_ids = module.subnet.public_subnet_ids
-  sg_id   = module.sg.sg_id
-  az_name = var.subnet_az_names[0]
+  sg_id             = module.sg.sg_id
+  az_name           = var.subnet_az_names[0]
 }
