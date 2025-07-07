@@ -31,6 +31,15 @@ resource "aws_iam_policy" "github_oidc_policy" {
     Version = "2012-10-17",
     Statement = [
       {
+        Effect = "Allow"
+        Action = [
+          "iam:CreatePolicy",
+          "iam:ListPolicyVersions",
+          "ec2:ImportKeyPair"
+        ]
+        Resource = "*"
+      },
+      {
         Effect   = "Allow",
         Action   = ["s3:ListBucket"],
         Resource = "arn:aws:s3:::my-tfm-state-bucket-july-2025"
@@ -112,27 +121,6 @@ resource "aws_iam_policy" "allow_ec2_actions" {
       }
     ]
   })
-}
-
-resource "aws_iam_policy" "import_key_pair_policy" {
-  name        = "ImportKeyPairPolicy-${data.aws_caller_identity.current.account_id}"
-  description = "Allow ImportKeyPair operation on EC2"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = "ec2:ImportKeyPair"
-        Resource = "arn:aws:ec2:ap-south-1:${data.aws_caller_identity.current.account_id}:key-pair/my-ec2key"
-      }
-    ]
-  })
-}
-
-resource "aws_iam_role_policy_attachment" "attach_import_key_pair_policy" {
-  policy_arn = aws_iam_policy.import_key_pair_policy.arn
-  role       = aws_iam_role.github_oidc_role.name
 }
 
 resource "aws_iam_role_policy_attachment" "github_attach_policy" {
