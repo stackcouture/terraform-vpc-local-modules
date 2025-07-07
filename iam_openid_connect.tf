@@ -30,15 +30,6 @@ resource "aws_iam_policy" "github_oidc_policy" {
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
-      # {
-      #   Effect = "Allow"
-      #   Action = [
-      #     "iam:CreatePolicy",
-      #     "iam:ListPolicyVersions",
-      #     "ec2:ImportKeyPair"
-      #   ]
-      #   Resource = "*"
-      # },
       {
         Effect   = "Allow",
         Action   = ["s3:ListBucket"],
