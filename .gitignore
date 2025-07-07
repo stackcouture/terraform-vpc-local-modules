@@ -2,3 +2,4 @@
 .terraform.*
 terraform.tfstate*
 .terraform 
+stackcouture-key.pem

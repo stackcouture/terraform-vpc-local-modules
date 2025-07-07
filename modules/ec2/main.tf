@@ -33,3 +33,25 @@ resource "aws_instance" "public_instance" {
     Name = var.instance_tag
   }
 }
+
+# Null resource to install apache2 and add content
+resource "null_resource" "install_apache2" {
+  depends_on = [aws_instance.public_instance] # Ensures EC2 instance is created before running provisioner
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update -y",                                                              # Update package list
+      "sudo apt-get install -y apache2",                                                     # Install Apache HTTP Server
+      "echo '<h1>Hello from Terraform Server</h1>' | sudo tee /var/www/html/index.html",     # Add content to index.html
+      "sudo systemctl start apache2",                                                       # Start Apache service
+      "sudo systemctl enable apache2",                                                     # Enable Apache to start on boot
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"                                              # Default EC2 user for Amazon Linux 2
+      private_key = file("${path.module}/stackcouture-key.pem") # Path to your private key
+      host        = aws_instance.public_instance.public_ip                            # EC2 Public IP
+    }
+  }
+}
