@@ -86,7 +86,7 @@ resource "aws_iam_policy" "github_oidc_policy" {
       {
         Effect = "Allow"
         Action = [
-          "iam:ListPolicyVersions"  # Allow listing versions for specific policies
+          "iam:ListPolicyVersions" # Allow listing versions for specific policies
         ]
         Resource = [
           "arn:aws:iam::${data.aws_caller_identity.current.account_id}:policy/GitHubS3AccessPolicy-${data.aws_caller_identity.current.account_id}",
@@ -138,7 +138,6 @@ resource "aws_iam_role_policy_attachment" "github_attach_policy" {
   role       = aws_iam_role.github_oidc_role.name
   policy_arn = aws_iam_policy.github_oidc_policy.arn
 }
-
 
 resource "aws_iam_role_policy_attachment" "attach_ec2_policy" {
   policy_arn = aws_iam_policy.allow_ec2_actions.arn
