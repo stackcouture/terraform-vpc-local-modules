@@ -33,7 +33,8 @@ resource "aws_instance" "public_instance" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = var.instance_type
   subnet_id                   = values(var.public_subnet_ids)[0]
-  key_name                    = "stackcouture-key"
+  #key_name                    = "stackcouture-key"
+  key_name = aws_key_pair.my_ec2key.key_name
   vpc_security_group_ids      = [var.sg_id]
   availability_zone           = var.az_name
   associate_public_ip_address = true
