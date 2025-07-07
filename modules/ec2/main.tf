@@ -53,5 +53,6 @@ resource "null_resource" "install_apache2" {
       private_key = file("${path.root}/stackcouture-key.pem") # Path to your private key
       host        = aws_instance.public_instance.public_ip                            # EC2 Public IP
     }
+    
   }
 }
