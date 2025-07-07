@@ -89,3 +89,15 @@ variable "sg_name" {
   type        = string
   description = "Security group name"
 }
+
+
+#EC2 Instance 
+variable "instance_type" {
+  type = string 
+  description = "Instance Type"
+}
+
+variable "instance_tag" {
+ type = string 
+ description = "Instance Tag"
+}
