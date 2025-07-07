@@ -50,11 +50,11 @@ module "sg" {
 # }
 
 module "ec2" {
-  source = "./modules/ec2"
-  instance_type = var.instance_type
-  instance_tag = var.instance_tag
+  source            = "./modules/ec2"
+  instance_type     = var.instance_type
+  instance_tag      = var.instance_tag
   public_subnet_ids = module.subnet.public_subnet_ids
   #sg_id = module.security_group_id.sg_id
-  sg_id = module.sg.sg_id
+  sg_id   = module.sg.sg_id
   az_name = var.subnet_az_names[0]
 }

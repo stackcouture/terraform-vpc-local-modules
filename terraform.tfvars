@@ -31,4 +31,4 @@ sg_name = "Web-SG"
 # EC2 Instance 
 
 instance_type = "t2.micro"
-instance_tag = "Public-Server"
+instance_tag  = "Public-Server"

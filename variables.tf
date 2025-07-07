@@ -93,11 +93,11 @@ variable "sg_name" {
 
 #EC2 Instance 
 variable "instance_type" {
-  type = string 
+  type        = string
   description = "Instance Type"
 }
 
 variable "instance_tag" {
- type = string 
- description = "Instance Tag"
+  type        = string
+  description = "Instance Tag"
 }

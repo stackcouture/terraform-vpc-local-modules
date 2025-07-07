@@ -72,6 +72,22 @@ resource "aws_iam_policy" "github_oidc_policy" {
           "ec2:DescribeSecurityGroupRules"
         ],
         Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "ec2:RunInstances",
+          "ec2:DescribeInstances",
+          "ec2:DescribeImages",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeVolumes",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:CreateTags",
+          "ec2:AllocateAddress",
+          "ec2:AssociateAddress"
+        ]
+        Resource = "*"
       }
     ]
   })

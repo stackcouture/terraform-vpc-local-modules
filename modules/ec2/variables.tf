@@ -1,11 +1,11 @@
 variable "instance_type" {
-  type = string 
+  type        = string
   description = "Instance Type"
 }
 
 variable "instance_tag" {
- type = string 
- description = "Instance Tag"
+  type        = string
+  description = "Instance Tag"
 }
 
 variable "public_subnet_ids" {
@@ -13,11 +13,11 @@ variable "public_subnet_ids" {
 }
 
 variable "sg_id" {
-  type = string 
+  type        = string
   description = "Security Group ID"
 }
 
 variable "az_name" {
-  type = string 
+  type        = string
   description = "Az name"
 }
